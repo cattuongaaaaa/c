@@ -1,128 +1,354 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="vi" class="no-js">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ra mắt mẫu nail mới</title>
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <title>Tai nghe không dây XYZ – Landing Page</title>
+  <meta name="description" content="Âm thanh vượt trội, chống ồn chủ động, pin 24h. Khám phá tai nghe không dây XYZ.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: sans-serif;
-    }
-	body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://i.pinimg.com/474x/54/03/72/5403721c2fcabe5eb7b7fe941e0ef448.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: -1;
-  opacity: 0.8;
+    /* ===== Base & Tokens ===== */
+:root{
+  --bg:#354a7a;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --primary:#300b70;
+  --card:#61749d;
+  --container:1160px;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(0,0,0,.25);
 }
 
-    section#main {
-      text-align: center;
-      padding: 4em 2em;
-      color: rgb(11, 0, 0);
-    }
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(124,58,237,.25), transparent 60%),
+    radial-gradient(1000px 500px at 90% 10%, rgba(14,165,233,.2), transparent 60%),
+    #0d1f77;
+  color:var(--text);
+  line-height:1.6;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
 
-    button.special {
-      background-color: #ff5e8e;
-      color: #fff;
-      border: none;
-      padding: 0.75em 2em;
-      border-radius: 25px;
-      font-weight: bold;
-      transition: background 0.3s ease;
-      cursor: pointer;
-    }
+.container{ width:100%; max-width:var(--container); margin:0 auto; padding:0 20px; }
+.section-head{ text-align:center; margin-bottom:26px; }
+.section-head h2{ font-size:clamp(22px,2vw + 12px,34px); margin:0 0 6px; }
+.section-head p{ color:var(--muted); margin:0; }
 
-    button.special:hover {
-      background-color: #e64a79;
-    }
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:12px 20px; border-radius:999px; font-weight:800;
+  transition:transform .15s ease, filter .2s ease, box-shadow .2s ease;
+}
+.btn-primary{
+  background:linear-gradient(135deg, var(--primary), #22d3ee);
+  color:#0b1020; box-shadow:0 12px 24px rgba(124,58,237,.25);
+}
+.btn:hover{ transform:translateY(-2px); filter:brightness(.95); }
 
-    #countdown {
-      font-size: 1.8em;
-      margin: 30px 0;
-      color: #020113;
-      letter-spacing: 1px;
-    }
+/* ===== Header (glass + sticky) ===== */
+header{ position:sticky; top:0; z-index:50; padding:12px 0; }
+header.glass{
+  background:rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
+}
+header.scrolled{ background:rgba(15,23,42,.9); box-shadow:0 8px 20px rgba(0,0,0,.25); }
 
-    #countdown span {
-      display: inline-block;
-      min-width: 60px;
-    }
+.nav{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.logo{ font-weight:800; letter-spacing:.3px; font-size:20px; }
+.logo span{ color:#22d3ee; }
+.nav-links{ display:flex; gap:22px; }
+.nav-links a{ font-weight:600; color:var(--text); opacity:.9; }
+.nav-links a:hover{ opacity:1; color:#fff; }
+.nav-burger{ display:none; width:44px; height:44px; border:none; border-radius:10px; background:rgba(255,255,255,.08); }
+.nav-burger span{ display:block; height:2px; background:#fff; margin:7px 8px; opacity:.9; border-radius:2px; }
 
-    footer {
-      text-align: center;
-      color: #ccc;
-      padding: 2em 0;
-    }
+/* ===== Hero ===== */
+.hero{
+  display:grid; align-items:center; gap:26px;
+  grid-template-columns:1.1fr .9fr;
+  min-height:clamp(520px, 82vh, 760px);
+  padding:24px 0 36px;
+}
+.br-md{ display:none; }
+.hero__text h1{ font-size:clamp(28px,3vw + 16px,56px); line-height:1.1; margin:0 0 10px; }
+.hero__text p{ color:var(--muted); margin:0 0 18px; max-width:56ch; }
+.hero__media{ background:linear-gradient(180deg, rgba(124,58,237,.18), rgba(34,211,238,.18)); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); }
+.hero__media img{ border-radius:12px; }
+
+/* ===== Features ===== */
+.features{ padding:40px 0 22px; }
+.features__grid{ display:grid; gap:18px; grid-template-columns:repeat(4,1fr); }
+.feature-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px; padding:18px;
+  box-shadow:0 8px 24px rgba(0,0,0,.15) inset, 0 10px 24px rgba(0,0,0,.18);
+  min-height:160px;
+}
+.feature-card .icon{
+  width:44px; height:44px; border-radius:12px; display:grid; place-items:center; margin-bottom:10px;
+  color:#22d3ee; background:rgba(34,211,238,.12);
+}
+.feature-card h3{ margin:4px 0 6px; font-size:18px; }
+.feature-card p{ margin:0; color:var(--muted); }
+
+/* Reveal animation (fallback no-js) */
+.no-js .reveal{ opacity:1; transform:none; }
+.js .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+.js .reveal.is-visible{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){
+  .js .reveal{ opacity:1; transform:none; }
+}
+
+/* ===== Gallery ===== */
+.gallery{ padding:38px 0; }
+.gallery__wrap{ display:grid; gap:16px; grid-template-columns:1.3fr .7fr; }
+.gallery__main{ width:100%; height:420px; object-fit:cover; border-radius:14px; box-shadow:var(--shadow); }
+.thumbs{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; align-content:start; }
+.thumb{ width:100%; height:200px; object-fit:cover; border-radius:12px; opacity:.9; border:2px solid transparent; cursor:pointer; transition:opacity .2s ease, border-color .2s ease; }
+.thumb:hover{ opacity:1; }
+.thumb.is-active{ border-color:#22d3ee; opacity:1; }
+
+/* ===== Contact ===== */
+.contact{ padding:34px 0 50px; }
+.contact__box{
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radius); padding:18px 20px;
+}
+
+/* ===== Footer ===== */
+.footer{ border-top:1px solid rgba(255,255,255,.08); padding:16px 0 28px; }
+.footer__inner{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.footer .social{ display:flex; gap:16px; }
+.footer .social a{ color:var(--muted); }
+.footer .social a:hover{ color:#fff; }
+
+/* ===== Responsive ===== */
+/* Tablet */
+@media (max-width:768px){
+  .br-md{ display:inline; }
+  .nav-links{ gap:14px; }
+  .features__grid{ grid-template-columns:repeat(2,1fr); }
+  .gallery__wrap{ grid-template-columns:1fr; }
+  .gallery__main{ height:360px; }
+  .contact__box{ flex-direction:column; align-items:flex-start; }
+}
+/* Mobile */
+@media (max-width:480px){
+  .nav-links{ display:none; }   /* theo yêu cầu: chỉ đổi giao diện, không JS */
+  .nav-burger{ display:inline-flex; align-items:center; justify-content:center; }
+  .hero{ grid-template-columns:1fr; }
+  .hero__media{ order:-1; }
+  .features__grid{ grid-template-columns:1fr; }
+  .thumb{ height:150px; }
+}
+
+/* Bù trừ khi cuộn tới id (vì header sticky) */
+section[id]{ scroll-margin-top:84px; }
 
   </style>
 </head>
 <body>
-  <section id="main">
-    <h1>Ra Mắt Bộ Sưu Tập Nail 2025</h1>
-    <p>Khám phá những thiết kế nail độc quyền, tinh tế và dẫn đầu xu hướng. Sự kiện diễn ra vào ngày <strong>15/09/2025</strong> tại The Glow Studio, TP.HCM.</p>
 
-    <div id="countdown">
-      <span id="days">00</span> ngày
-      <span id="hours">00</span> giờ
-      <span id="minutes">00</span> phút
-      <span id="seconds">00</span> giây
+  <!-- Header (Glass + Sticky) -->
+  <header id="site-header" class="glass">
+    <div class="container nav">
+      <a href="#home" class="logo" aria-label="Baseus AirNora 2 Headphones">Baseus AirNora 2<span>Audio</span></a>
+
+      <nav class="nav-links" aria-label="Điều hướng chính">
+        <a href="#home">Trang chủ</a>
+        <a href="#features">Tính năng</a>
+        <a href="#gallery">Thư viện ảnh</a>
+        <a href="#contact">Liên hệ</a>
+      </nav>
+
+      <!-- Hamburger giả lập (theo yêu cầu không cần JS) -->
+      <button class="nav-burger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </header>
 
-    <form method="post" action="#">
-      <input type="email" name="email" placeholder="Nhập email để nhận thư mời" />
-      <button type="submit" class="special">Nhận thư mời</button>
-    </form>
-  </section>
+  <main>
+    <!-- Hero -->
+    <section id="home" class="hero container">
+      <div class="hero__text">
+        <h1>Âm Thanh Vượt Trội – <br class="br-md">Tự Do Tuyệt Đối</h1>
+        <p>Tai Nghe Bluetooth <strong>Baseus AirNora 2</strong> cho trải nghiệm đỉnh cao: chống ồn chủ động, pin bền bỉ, kết nối ổn định.</p>
+        <a href="#contact" class="btn btn-primary">Mua Ngay</a>
+      </div>
+      <div class="hero__media">
+        <img
+          src="https://product.hstatic.net/1000152881/product/0__13__c6eee34333b641f6824c95d52645328f.jpg"
+          alt="Tai nghe không dây Baseus AirNora 2" loading="eager">
+      </div>
+    </section>
 
-  <footer>
-    <p>&copy; The Glow Studio. All rights reserved.</p>
+    <!-- Features -->
+    <section id="features" class="features container">
+      <header class="section-head">
+        <h2>Tính năng nổi bật</h2>
+        <p>Thiết kế cho người yêu âm nhạc & làm việc mọi nơi.</p>
+      </header>
+
+      <div class="features__grid">
+        <article class="feature-card reveal">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+              <path fill="currentColor" d="M4 10a8 8 0 0116 0v5a3 3 0 01-3 3h-1v-8h2a6 6 0 10-12 0h2v8H7a3 3 0 01-3-3v-5z"/>
+            </svg>
+          </div>
+          <h3>Chống ồn chủ động</h3>
+          <p>Loại bỏ tiếng ồn môi trường, tập trung hoàn toàn vào âm nhạc.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+              <path fill="currentColor" d="M16 7H3a2 2 0 00-2 2v6a2 2 0 002 2h13a2 2 0 002-2v-1h2v-4h-2V9a2 2 0 00-2-2z"/>
+            </svg>
+          </div>
+          <h3>Pin tới 24 giờ</h3>
+          <p>Nghe cả ngày với hộp sạc nhanh, sẵn sàng mọi lúc.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+              <path fill="currentColor" d="M12 3l6 6-4 3 4 3-6 6V14L8 17l8-5-8-5 4 3V3z"/>
+            </svg>
+          </div>
+          <h3>Bluetooth 5.2</h3>
+          <p>Kết nối nhanh, độ trễ thấp, tương thích đa thiết bị.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+              <path fill="currentColor" d="M12 2s7 7 7 12a7 7 0 11-14 0c0-5 7-12 7-12z"/>
+            </svg>
+          </div>
+          <h3>Kháng nước IPX4</h3>
+          <p>Tập luyện thoải mái, mồ hôi hay mưa nhẹ không còn là vấn đề.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery container">
+      <header class="section-head">
+        <h2>Thư viện ảnh</h2>
+        <p>Xem các góc cạnh & màu sắc của XYZ.</p>
+      </header>
+
+      <div class="gallery__wrap">
+        <img id="gallery-main" class="gallery__main"
+             src="https://bizweb.dktcdn.net/100/425/492/files/tai-nghe-bluetooth-os-baseus-airnora-2-true-wireless-earphones-hybrid-anc-10.jpg?v=1689748973414"
+             alt="Ảnh sản phẩm lớn" loading="lazy">
+
+        <div class="thumbs">
+          <img class="thumb is-active"
+               src="https://bizweb.dktcdn.net/100/425/492/files/tai-nghe-bluetooth-os-baseus-airnora-2-true-wireless-earphones-hybrid-anc-4.jpg?v=1689748996853"
+               data-full="https://bizweb.dktcdn.net/100/425/492/files/tai-nghe-bluetooth-os-baseus-airnora-2-true-wireless-earphones-hybrid-anc-4.jpg?v=1689748996853"
+               alt="Ảnh 1" loading="lazy">
+
+          <img class="thumb"
+               src="https://bizweb.dktcdn.net/100/425/492/products/tai-nghe-bluetooth-os-baseus-airnora-2-true-wireless-earphones-hybrid-anc-6.jpg?v=1689749402147"
+               data-full="https://bizweb.dktcdn.net/100/425/492/products/tai-nghe-bluetooth-os-baseus-airnora-2-true-wireless-earphones-hybrid-anc-6.jpg?v=1689749402147"
+               alt="Ảnh 2" loading="lazy">
+
+          <img class="thumb"
+               src="https://bizweb.dktcdn.net/thumb/large/100/462/529/products/1-7-1679288569371.jpg?v=1702437004310"
+               data-full="https://bizweb.dktcdn.net/thumb/large/100/462/529/products/1-7-1679288569371.jpg?v=1702437004310"
+               alt="Ảnh 3" loading="lazy">
+
+          <img class="thumb"
+               src="https://bizweb.dktcdn.net/100/425/492/files/tai-nghe-bluetooth-os-baseus-airnora-2-true-wireless-earphones-hybrid-anc-5.jpg?v=1689748969724"
+               data-full="https://bizweb.dktcdn.net/100/425/492/files/tai-nghe-bluetooth-os-baseus-airnora-2-true-wireless-earphones-hybrid-anc-5.jpg?v=1689748969724"
+               alt="Ảnh 4" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / CTA -->
+    <section id="contact" class="contact container">
+      <header class="section-head">
+        <h2>Liên hệ & đặt mua</h2>
+        <p>Nhận tư vấn & ưu đãi sớm nhất.</p>
+      </header>
+
+      <div class="contact__box">
+        <div class="contact__info">
+          <p><strong>Email:</strong> hello@BaseusAudio.vn</p>
+          <p><strong>Hotline:</strong> 0900 000 000</p>
+        </div>
+        <a href="#home" class="btn btn-primary">Lên đầu trang</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="y"></span> Baseus Audio. All rights reserved.</p>
+      <div class="social">
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="YouTube">YouTube</a>
+      </div>
+    </div>
   </footer>
-  <script>
-	document.addEventListener('DOMContentLoaded', function () {
-	  const countdownEl = document.getElementById("countdown");
-	  const daysEl = document.getElementById("days");
-	  const hoursEl = document.getElementById("hours");
-	  const minutesEl = document.getElementById("minutes");
-	  const secondsEl = document.getElementById("seconds");
-  
-	  const targetDate = new Date("2025-09-15T00:00:00").getTime(); // 🎯 Đặt ngày sự kiện
-  
-	  function updateCountdown() {
-		const now = new Date().getTime();
-		const diff = targetDate - now;
-  
-		if (diff <= 0) {
-		  countdownEl.innerHTML = "🎉 Sự kiện đã bắt đầu!";
-		  return;
-		}
-  
-		const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-		const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-		const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-  
-		daysEl.textContent = String(days).padStart(2, '0');
-		hoursEl.textContent = String(hours).padStart(2, '0');
-		minutesEl.textContent = String(minutes).padStart(2, '0');
-		secondsEl.textContent = String(seconds).padStart(2, '0');
-	  }
-  
-	  updateCountdown();                  // Gọi ngay khi load
-	  setInterval(updateCountdown, 1000); // Cập nhật mỗi giây
-	});
+
+  <script src="js/app.js" defer>
+
+    // Bật cờ JS để áp dụng hiệu ứng reveal
+document.documentElement.classList.replace('no-js', 'js');
+
+// Năm footer
+document.getElementById('y').textContent = new Date().getFullYear();
+
+// Đổi nền header khi cuộn
+const header = document.getElementById('site-header');
+const onScroll = () => {
+  if (window.scrollY > 12) header.classList.add('scrolled');
+  else header.classList.remove('scrolled');
+};
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// Gallery: click thumbnail => đổi ảnh lớn
+const mainImg = document.getElementById('gallery-main');
+const thumbs = document.querySelectorAll('.thumb');
+thumbs.forEach(t => {
+  t.addEventListener('click', () => {
+    const full = t.dataset.full || t.src;
+    mainImg.src = full;
+    thumbs.forEach(x => x.classList.remove('is-active'));
+    t.classList.add('is-active');
+  });
+});
+
+// Features: reveal on scroll (Intersection Observer)
+const toReveal = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries, obs) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('is-visible');
+      obs.unobserve(e.target); // chỉ animate lần đầu
+    }
+  });
+}, { threshold: 0.2 });
+toReveal.forEach(el => io.observe(el));
+
   </script>
-  
 </body>
 </html>
